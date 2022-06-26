@@ -1,0 +1,12 @@
+﻿@*Подключаем определенный класс*@ 
+@model Book
+
+<div class="col-lg-3">
+    <img class="img-thumbnail" src="@Model.img" alt="@Model.Name"/>
+    <p >@Model.Name</p>
+    <p>@Model.price.ToString()$</p>
+    @*Указваем в  asp-route-cartId айди товара которого мы передаем*@
+    <p><a class="btn btn-warning" asp-controller="ShopCart" asp-action="addToCart"
+           asp-route-Id="@Model.Id">Add to Basket</a>
+    </p>
+</div>

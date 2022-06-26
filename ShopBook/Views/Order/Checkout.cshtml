@@ -1,0 +1,66 @@
+﻿@model Order
+
+<div class="row">
+	<h3>Making an order</h3>
+	<form asp-action="Checkout" method="post" class="form-horizontal">
+		@*Поле 1*@
+		<div class="form-group">
+			@*Вывод надписи возле поля*@
+			<label asp-for="Name"></label>
+			<div class="col-md-5">
+				@*Вывод поля*@
+				<input asp-for="Name" class="form-control" />
+				@*Текст ошибки*@
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+		</div>
+		@*Поле 2*@
+		<div class="form-group">
+			@*Вывод надписи возле поля*@
+			<label asp-for="SurName"></label>
+			<div class="col-md-5">
+				@*Вывод поля*@
+				<input asp-for="SurName" class="form-control" />
+				@*Текст ошибки*@
+				<span asp-validation-for="SurName" class="text-danger"></span>
+			</div>
+		</div>
+
+		@*Поле 3*@
+		<div class="form-group">
+			@*Вывод надписи возле поля*@
+			<label asp-for="Adress"></label>
+			<div class="col-md-5">
+				@*Вывод поля*@
+				<input asp-for="Adress" class="form-control" />
+				@*Текст ошибки*@
+				<span asp-validation-for="Adress" class="text-danger"></span>
+			</div>
+		</div>
+		@*Поле 4*@
+		<div class="form-group">
+			@*Вывод надписи возле поля*@
+			<label asp-for="Phone"></label>
+			<div class="col-md-5">
+				@*Вывод поля*@
+				<input asp-for="Phone" class="form-control" />
+				@*Текст ошибки*@
+				<span asp-validation-for="Phone" class="text-danger"></span>
+			</div>
+		</div>
+
+		@*Поле 5*@
+		<div class="form-group">
+			@*Вывод надписи возле поля*@
+			<label asp-for="Email"></label>
+			<div class="col-md-5">
+				@*Вывод поля*@
+				<input asp-for="Email" class="form-control" />
+				@*Текст ошибки*@
+				<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+		</div>
+		<input class="btn btn-success" type="submit" value="Complete order" />
+	</form>
+
+</div>
