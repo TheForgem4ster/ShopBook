@@ -3,10 +3,14 @@ using System.Collections.Generic;
 
 namespace BusinessLayer.Interfaces
 {
-    // Получение всех категорий из модели
+    /// <summary>
+    /// Интерфейс который отвечает за получение всех категорий
+    /// </summary>
     public interface IBooksCategory
     {
-        //возвращает все модели
+        /// <summary>
+        /// Функция которая возвращает все модели из категории
+        /// </summary>
         IEnumerable<Category> AllCategories { get; }
     }
 }

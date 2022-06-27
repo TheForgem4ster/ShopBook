@@ -8,17 +8,40 @@ using System.Linq;
 
 namespace DataLayer.Models
 {
+    /// <summary>
+    /// Класс корзина, в котором есть  список элементы корзины магазина, конструктор с параметром
+    /// методы получения, добавления и получения товара из магазина
+    /// </summary>
     public class ShopCart
     {
+        /// <summary>
+        /// Создания поля для чтения AppDBContent для реализации конcтруктора
+        /// </summary>
         private readonly AppDBContent _appDBContent;
+
+        /// <summary>
+        /// Индификатор корзины покупок
+        /// </summary>
         public string ShopCartId { get; set; }
+
+        /// <summary>
+        /// Список товаров в корзине
+        /// </summary>
         public List<ShopCartItem> ListShopItems { get; set; }
        
+        /// <summary>
+        /// Конструктор с параметром
+        /// </summary>
+        /// <param name="appDBContent"></param>
         public ShopCart(AppDBContent appDBContent)
         {
             _appDBContent = appDBContent;
         }
-
+       /// <summary>
+       /// Статический метод который получает 
+       /// </summary>
+       /// <param name="services"></param>
+       /// <returns>Возвращает обьект класса корзина</returns>
         public static ShopCart GetCart(IServiceProvider services)
         {
             // создали объект для сесии
@@ -32,7 +55,10 @@ namespace DataLayer.Models
 
             return new ShopCart(context) { ShopCartId = shopCartId };
         }
-
+        /// <summary>
+        /// Метод который добавляет в корзину книгу
+        /// </summary>
+        /// <param name="book"></param>
         public void AddToCart(Book book)
         {
             _appDBContent.ShopCartItems.Add(new ShopCartItem
@@ -44,6 +70,11 @@ namespace DataLayer.Models
             // Сохранение всех данных
             _appDBContent.SaveChanges();
         }
+
+        /// <summary>
+        /// Список товаров из корзины
+        /// </summary>
+        /// <returns>Возвращает список товаров по ShopCartId</returns>
         public List<ShopCartItem> GetShopItems()
         {
             return _appDBContent.ShopCartItems.Where(b => b.ShopCartId == ShopCartId)

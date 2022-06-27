@@ -8,17 +8,28 @@ using WebApplication1.ViewModels;
 
 namespace WebApplication1.Controllers
 {
+    /// <summary>
+    /// Класс контролеер книги
+    /// </summary>
     public class BooksController : Controller
     {
         private readonly IAllBooks _allBooks;
         private readonly IBooksCategory _allCategory;
-
-        
+        /// <summary>
+        /// Конструктор с параметрами
+        /// </summary>
+        /// <param name="iAllBooks">Передаем параметр интерфейса IAllBooks</param>
+        /// <param name="iAllCategory">Передаем параметр интерфейса IBooksCategory</param>
         public BooksController(IAllBooks iAllBooks, IBooksCategory iAllCategory)
         {
             _allBooks = iAllBooks;
             _allCategory = iAllCategory;
         }
+        /// <summary>
+        /// Метод который возвращает html страницу с списком всех товаров
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
         // возвращает результат html странички
         [Route("Books/List")]
         [Route("Books/List/{category}")]
@@ -58,5 +69,7 @@ namespace WebApplication1.Controllers
 
             return View(bookObj);
         }
+
+
     }
 }

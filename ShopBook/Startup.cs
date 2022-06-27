@@ -12,10 +12,16 @@ using Microsoft.Extensions.Hosting;
 
 namespace WebApplication1
 {
+    /// <summary>
+    /// Стартовый класс
+    /// </summary>
     public class Startup
     {
         private IConfigurationRoot _confString;
-
+        /// <summary>
+        /// Конструктор с параметром обращаемся к папке где хранится подключение нашей базы данных
+        /// </summary>
+        /// <param name="hostEnv">Предоставляет сведения среде веб-размещении файла</param>
         [System.Obsolete]
         public Startup(Microsoft.Extensions.Hosting.IHostingEnvironment hostEnv)
         {
@@ -28,7 +34,7 @@ namespace WebApplication1
             services.AddDbContext<AppDBContent>(options => options.UseSqlServer
             (_confString.GetConnectionString("DefaultConnection")));
 
-            // передаем интерфес который реализует класс
+            // передаем интерфес который реализует класс (Объединяет интерфес с классом который реализует его)
             services.AddTransient<IAllBooks, BookRepository>();
             services.AddTransient<IBooksCategory, CategoryRepository>();
             services.AddTransient<IAllOrders, OrdersRepository>();
@@ -47,11 +53,6 @@ namespace WebApplication1
       
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //if (env.IsDevelopment())
-            //{
-
-
-            //}
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();

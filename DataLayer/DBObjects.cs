@@ -6,10 +6,16 @@ using System.Linq;
 
 namespace DataLayer
 {
+    /// <summary>
+    /// Класс служит для добавления товаров 
+    /// </summary>
     [Table("InstitucionesMilitares", Schema = "configuracion")]
     public static class DBObjects
     {
-
+        /// <summary>
+        /// Метод служит для добавления данных в базу данных
+        /// </summary>
+        /// <param name="content"></param>
         public static void Initial(AppDBContent content)
         {
 
@@ -19,7 +25,7 @@ namespace DataLayer
                 content.Category.AddRange(Categories.Select(con => con.Value));
             }
 
-
+            // Если книги пустые добавляем их
             if (!content.Books.Any())
             {
                 content.AddRange
@@ -76,7 +82,13 @@ namespace DataLayer
             //сохраняем все изменения 
             content.SaveChanges();
         }
+        /// <summary>
+        /// Словарь для категорий
+        /// </summary>
         public static Dictionary<string, Category> categorys;
+        /// <summary>
+        /// Метод служит для добавления категорий в Бд
+        /// </summary>
         public static Dictionary<string, Category> Categories
         {
             get
