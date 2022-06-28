@@ -6,17 +6,29 @@ using WebApplication1.ViewModels;
 
 namespace WebApplication1.Controllers
 {
+    /// <summary>
+    /// Класс контроллер для создания корзины
+    /// </summary>
     public class ShopCartController : Controller
     {
         private readonly IAllBooks _bookRep;
         private readonly ShopCart _shopCart;
 
+        /// <summary>
+        /// Констуктор с параметрами
+        /// </summary>
+        /// <param name="bookRep"></param>
+        /// <param name="shopCart"></param>
         public ShopCartController(IAllBooks bookRep, ShopCart shopCart)
         {
             _bookRep = bookRep;
             _shopCart = shopCart;
         }
-        // Вызывает определенный html фаблон и отобразить нашу корзину
+
+        /// <summary>
+        /// Метод для отображения в корзине заказов
+        /// </summary>
+        /// <returns>Возращает определенный html фаблон и отображает заказы</returns>
         public ViewResult Index()
         {
             var item = _shopCart.GetShopItems();
@@ -26,7 +38,11 @@ namespace WebApplication1.Controllers
 
             return View(obj);
         }
-        // переадресовывания на другую страничку
+        /// <summary>
+        /// Метод добавляет товары в корзину
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>переадресуем пользователя на страничку с корзиной</returns>
         public RedirectToActionResult addToCart(int id)
         {
             // выбирает нужный товар из списка базы данных

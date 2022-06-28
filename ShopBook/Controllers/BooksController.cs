@@ -13,26 +13,34 @@ namespace WebApplication1.Controllers
     /// </summary>
     public class BooksController : Controller
     {
+        /// <summary>
+        /// Создание переменной
+        /// </summary>
         private readonly IAllBooks _allBooks;
+        /// <summary>
+        /// Создание переменной
+        /// </summary>
         private readonly IBooksCategory _allCategory;
         /// <summary>
         /// Конструктор с параметрами
         /// </summary>
-        /// <param name="iAllBooks">Передаем параметр интерфейса IAllBooks</param>
-        /// <param name="iAllCategory">Передаем параметр интерфейса IBooksCategory</param>
+        /// <param name="iAllBooks">Передаем параметр интерфейса IAllBooks и устанавливаем его</param>
+        /// <param name="iAllCategory">Передаем параметр интерфейса IBooksCategory и устанавливаем его</param>
         public BooksController(IAllBooks iAllBooks, IBooksCategory iAllCategory)
         {
             _allBooks = iAllBooks;
             _allCategory = iAllCategory;
         }
         /// <summary>
+        /// Указываем Юрл адресс при котором будет срабатывать функция
+        /// </summary>
+        [Route("Books/List")]
+        [Route("Books/List/{category}")]
+        /// <summary>
         /// Метод который возвращает html страницу с списком всех товаров
         /// </summary>
         /// <param name="category"></param>
-        /// <returns></returns>
-        // возвращает результат html странички
-        [Route("Books/List")]
-        [Route("Books/List/{category}")]
+        /// <returns>возвращает результат html странички</returns>
         public ViewResult List(string category)
         {
             string _category = category;

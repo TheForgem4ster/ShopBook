@@ -28,7 +28,10 @@ namespace WebApplication1
             _confString = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath)
                 .AddJsonFile("dbsettings.json").Build();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDBContent>(options => options.UseSqlServer
@@ -50,7 +53,11 @@ namespace WebApplication1
             services.AddSession();
         }
 
-      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseDeveloperExceptionPage();
@@ -59,6 +66,7 @@ namespace WebApplication1
             app.UseSession();
             app.UseMvcWithDefaultRoute();
 
+            
             //Þנכ אהנוס
             app.UseMvc(router =>
             {
