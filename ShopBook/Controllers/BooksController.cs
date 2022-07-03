@@ -91,21 +91,6 @@ namespace WebApplication1.Controllers
             {
                 books = _allBooks.Books.Where(s => s.Name.Contains(searchString)).ToList();
             }
-            //var allbooks = db.Books.Where(a => a.Author.Contains(name)).ToList();
-           
-            //string _searchString = searchString;
-            //IEnumerable<Book> books = null;
-            //if (string.IsNullOrEmpty(searchString))
-            //{
-            //    ModelState.AddModelError("", "Nothing found!");
-            //}
-            //else
-            //{
-
-            //    books = _allBooks.Books.OrderBy(i => i.Id);
-            //    //books = from b in _allBooks.Books select b;
-            //    books = books.Where(s => s.Name.Contains(searchString));
-            //}
 
             return View(books);
         }
