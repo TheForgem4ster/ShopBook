@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Interfaces;
+using DataLayer;
 using DataLayer.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,7 @@ namespace WebApplication1.Controllers
     /// </summary>
     public class BooksController : Controller
     {
+        private readonly AppDBContent _context;
         /// <summary>
         /// Создание переменной
         /// </summary>
@@ -62,22 +65,49 @@ namespace WebApplication1.Controllers
                     books = _allBooks.Books.Where(i => i.Category.CategoryName.Equals("Detective")).OrderBy(i => i.Id);
                     currCategory = "Detective";
                 }
-                
-
             }
-
             var bookObj = new BooksListViewModel
             {
                 AllBooks = books,
                 CurrectCategory = currCategory
             };
-
             ViewBag.Title = "Page with books";
-
-
+            
             return View(bookObj);
         }
+        //[Route("Books/Find")]
+        //[Route("Books/Find/{searchString}")]
+        [HttpGet]   
+        public ViewResult Find(string searchString)
+        {
+            string _searchString = searchString;
+            IEnumerable<Book> books = null;
+            if (string.IsNullOrEmpty(_searchString))
+            {
+                ModelState.AddModelError("", "empty!");
+                
+            }
+            else
+            {
+                books = _allBooks.Books.Where(s => s.Name.Contains(searchString)).ToList();
+            }
+            //var allbooks = db.Books.Where(a => a.Author.Contains(name)).ToList();
+           
+            //string _searchString = searchString;
+            //IEnumerable<Book> books = null;
+            //if (string.IsNullOrEmpty(searchString))
+            //{
+            //    ModelState.AddModelError("", "Nothing found!");
+            //}
+            //else
+            //{
 
+            //    books = _allBooks.Books.OrderBy(i => i.Id);
+            //    //books = from b in _allBooks.Books select b;
+            //    books = books.Where(s => s.Name.Contains(searchString));
+            //}
 
+            return View(books);
+        }
     }
 }

@@ -70,8 +70,10 @@ namespace WebApplication1
             //Þנכ אהנוס
             app.UseMvc(router =>
             {
+
                 router.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
                 router.MapRoute(name: "categoryFilter", template: "Book/{action}/{category?}", defaults: new { Controllers = "Books", action = "List" });
+                router.MapRoute(name: "FindBooks", template: "Book/{action}/{searchString?}", defaults: new { Controllers = "Books", action = "Find" });
             });
             // סמחהאול מבכאסעü
             using (var scope = app.ApplicationServices.CreateScope())
