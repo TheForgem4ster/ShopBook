@@ -1,28 +1,28 @@
 ﻿namespace DataLayer.Models
 {
     /// <summary>
-    /// Класс элемента корзины магазина, который содержит индификационный код, свойства класса книги, 
-    /// цену и индификационный код товара внутри корзины
+    /// The class of the element of the shopping cart, which contains the identification code, 
+    /// properties of the book class, price and product identification code inside the cart
     /// </summary>
     public class ShopCartItem
     {
         /// <summary>
-        /// Индификационный код элемента корзины магазина 
+        /// Shopping cart item identification code
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Свойство класса книги 
+        /// book class property
         /// </summary>
         public Book book { get; set; }
 
         /// <summary>
-        /// Цена элемента корзины магазина 
+        /// Shop cart item price
         /// </summary>
         public int price { get; set; }
 
         /// <summary>
-        /// Индификационный код товара внутри корзины
+        /// Identification code of the item inside the cart
         /// </summary>
         public string ShopCartId { get; set; }
     }

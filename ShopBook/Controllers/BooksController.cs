@@ -11,39 +11,39 @@ using WebApplication1.ViewModels;
 namespace WebApplication1.Controllers
 {
     /// <summary>
-    /// Класс контролеер книги
+    /// Book controller class
     /// </summary>
     public class BooksController : Controller
     {
         private readonly AppDBContent _context;
         /// <summary>
-        /// Создание переменной
+        /// Create a variable
         /// </summary>
         private readonly IAllBooks _allBooks;
         /// <summary>
-        /// Создание переменной
+        /// Create a variable
         /// </summary>
         private readonly IBooksCategory _allCategory;
         /// <summary>
-        /// Конструктор с параметрами
+        /// Constructor with parameters
         /// </summary>
-        /// <param name="iAllBooks">Передаем параметр интерфейса IAllBooks и устанавливаем его</param>
-        /// <param name="iAllCategory">Передаем параметр интерфейса IBooksCategory и устанавливаем его</param>
+        /// <param name="iAllBooks">Passing the IAllBooks interface parameter and setting it</param>
+        /// <param name="iAllCategory">Passing the IBooksCategory interface parameter and setting it</param>
         public BooksController(IAllBooks iAllBooks, IBooksCategory iAllCategory)
         {
             _allBooks = iAllBooks;
             _allCategory = iAllCategory;
         }
         /// <summary>
-        /// Указываем Юрл адресс при котором будет срабатывать функция
+        /// Specify the URL at which the function will work
         /// </summary>
         [Route("Books/List")]
         [Route("Books/List/{category}")]
         /// <summary>
-        /// Метод который возвращает html страницу с списком всех товаров
+        /// Method that returns an html page with a list of all products
         /// </summary>
         /// <param name="category"></param>
-        /// <returns>возвращает результат html странички</returns>
+        /// <returns>returns the result of the html page</returns>
         public ViewResult List(string category)
         {
             string _category = category;

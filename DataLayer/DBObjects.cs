@@ -7,32 +7,32 @@ using System.Linq;
 namespace DataLayer
 {
     /// <summary>
-    /// Класс служит для добавления товаров 
+    /// The class is used to add products
     /// </summary>
     [Table("InstitucionesMilitares", Schema = "configuracion")]
     public static class DBObjects
     {
         /// <summary>
-        /// Метод служит для добавления данных в базу данных
+        /// The method is used to add data to the database
         /// </summary>
         /// <param name="content"></param>
         public static void Initial(AppDBContent content)
         {
 
-            // Если категории пустые мы добавляем их
+            // If the categories are empty we add them
             if (!content.Category.Any())
             {
                 content.Category.AddRange(Categories.Select(con => con.Value));
             }
 
-            // Если книги пустые добавляем их
+            // If the books are empty add them
             if (!content.Books.Any())
             {
                 content.AddRange
                 (
                     new Book
                     {
-                        Name = "The Truth About the Harry Quebert Affair",//Правда о деле Гарри Квеберта
+                        Name = "The Truth About the Harry Quebert Affair",
                         shortDesc = "Wherever you run, your problems get into your luggage and follow you everywhere.",
                         //Куда бы вы ни бежали, ваши проблемы залезают к вам в багаж и следуют за вами повсюду.
                         grade = "7.6 из 10",
@@ -44,7 +44,7 @@ namespace DataLayer
                     },
                     new Book
                     {
-                        Name = "Father Brown's Mystery",//Тайна отца Брауна
+                        Name = "Father Brown's Mystery",
                         shortDesc = "Can you define a crime by ear?",//А вы можете определить преступление на слух?
                         grade = "8 из 10",
                         img = "/img/Father_Brown_Mystery_book.jpg",
@@ -55,7 +55,7 @@ namespace DataLayer
                     },
                     new Book
                     {
-                        Name = "The Shining Stephen King",//
+                        Name = "The Shining Stephen King",
                         shortDesc = "A promise is, of course, not a trifle",//Обещание — это, разумеется не пустяк.
                         grade = "9.6 из 10",
                         img = "/img/The_Shining_Stephen_King_book.jpg",
@@ -66,7 +66,7 @@ namespace DataLayer
                     },
                     new Book
                     {
-                        Name = "Shop of bad dreams",//Лавка дурных снов
+                        Name = "Shop of bad dreams",
                         shortDesc = "A story is like a football or basketball game: you compete not only with the opposing team, but also against time.",
                         //Рассказ – это футбольный или баскетбольный матч: ты соревнуешься не только с командой соперников, но и со временем.
                         grade = "8.7 из 10",
@@ -79,15 +79,15 @@ namespace DataLayer
                 );
             }
 
-            //сохраняем все изменения 
+            // save all changes
             content.SaveChanges();
         }
         /// <summary>
-        /// Словарь для категорий
+        /// Dictionary for categories
         /// </summary>
         public static Dictionary<string, Category> categorys;
         /// <summary>
-        /// Метод служит для добавления категорий в Бд
+        /// The method is used to add categories to the database
         /// </summary>
         public static Dictionary<string, Category> Categories
         {

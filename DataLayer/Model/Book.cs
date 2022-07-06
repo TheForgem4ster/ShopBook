@@ -1,49 +1,49 @@
 ﻿namespace DataLayer.Models
 {
     /// <summary>
-    /// Класс книги, который содержит индификационный код, имя, краткое описание, оценка товара
-    /// фотографию, цена, популярность, доступность, индификационный код Категории, класс категории  
+    /// Book class that contains an identification code, name, short description, product rating
+    /// photo, price, popularity, availability, category identification code, category class  
     /// </summary>
     public class Book
     {
         /// <summary>
-        /// Индификационный код книги
+        /// Book identification code
         /// </summary>
         public int Id { get; set; }
         /// <summary>
-        /// Название книги
+        /// Name of the book
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// Краткое описание книги
+        /// Brief description of the book
         /// </summary>
         public string shortDesc { get; set; }
         /// <summary>
-        /// Оценка книги
+        /// Book rating
         /// </summary>
         public string grade { get; set; }
         /// <summary>
-        /// Фотография книги
+        /// Book photography
         /// </summary>
         public string img { get; set; }
         /// <summary>
-        /// Цена книги
+        /// Вook price
         /// </summary>
         public ushort price { get; set; }
         /// <summary>
-        /// Лучшие книги
+        /// Best Books
         /// </summary>
         public bool isFavourite { get; set; }
         /// <summary>
-        /// Доступность книги
+        /// book availability
         /// </summary>
         public bool available { get; set; }
         /// <summary>
-        /// Индификационный код категории
+        /// Category identification code
         /// </summary>
         public int categoryId { get; set; }
         /// <summary>
-        /// свойство класса категории
+        /// category class property
         /// </summary>
         public Category Category { get; set; }
 

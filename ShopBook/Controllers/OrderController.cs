@@ -11,15 +11,15 @@ namespace WebApplication1.Controllers
     public class OrderController : Controller
     {
         /// <summary>
-        /// Создание переменной
+        /// Create a variable
         /// </summary>
         private readonly IAllOrders _allOrders;
         /// <summary>
-        /// Создание переменной
+        /// Create a variable
         /// </summary>
         private readonly ShopCart _shopCart;
         /// <summary>
-        /// Создание конструктора с параметрами
+        /// Creating a constructor with parameters
         /// </summary>
         /// <param name="allOrders"></param>
         /// <param name="shopCart"></param>
@@ -29,15 +29,15 @@ namespace WebApplication1.Controllers
             _shopCart = shopCart;
         }
         /// <summary>
-        /// Функция для вывода заказов
+        /// Function for displaying orders
         /// </summary>
-        /// <returns>возвращает некий html щаблон</returns>
+        /// <returns>returns some html template</returns>
         public IActionResult Checkout()
         {
             return View();
         }
         /// <summary>
-        /// Метод срабатывает когда мы отправляем форму и лужит для заполнения товара 
+        /// The method is triggered when we submit the form and is used to fill in the product
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
@@ -55,15 +55,15 @@ namespace WebApplication1.Controllers
             if (ModelState.IsValid)
             {
                 _allOrders.CreateOrder(order);
-                //Возвращаем функции Complete
+                //Return functions Complete
                 return RedirectToAction("Complete");
             }
             return View(order);
         }
         /// <summary>
-        /// Класс служит для отображения сообщения когда мы сделали заказ
+        /// The class serves to display a message when we have made an order.
         /// </summary>
-        /// <returns>возвращает страничку</returns>
+        /// <returns>returns the page</returns>
         public IActionResult Complete()
         {
             ViewBag.Message = "Order successfully processed";

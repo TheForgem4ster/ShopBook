@@ -9,54 +9,55 @@ using System.Linq;
 namespace DataLayer.Models
 {
     /// <summary>
-    /// Класс корзина, в котором есть  список элементы корзины магазина, конструктор с параметром
-    /// методы получения, добавления и получения товара из магазина
+    /// Cart class, which has a list of elements of the shopping cart, constructor with a parameter
+    /// methods for getting, adding and getting goods from the store
     /// </summary>
     public class ShopCart
     {
         /// <summary>
-        /// Создания поля для чтения AppDBContent для реализации конcтруктора
+        /// Creating a field for reading AppDBContent to implement the constructor
         /// </summary>
         private readonly AppDBContent _appDBContent;
 
         /// <summary>
-        /// Индификатор корзины покупок
+        /// Shopping cart ID
         /// </summary>
         public string ShopCartId { get; set; }
 
         /// <summary>
-        /// Список товаров в корзине
+        /// List of items in the shopping cart
         /// </summary>
         public List<ShopCartItem> ListShopItems { get; set; }
-       
+
         /// <summary>
-        /// Конструктор с параметром
+        /// Constructor with parameter
         /// </summary>
         /// <param name="appDBContent"></param>
         public ShopCart(AppDBContent appDBContent)
         {
             _appDBContent = appDBContent;
         }
-       /// <summary>
-       /// Статический метод который получает 
-       /// </summary>
-       /// <param name="services"></param>
-       /// <returns>Возвращает обьект класса корзина</returns>
+        /// <summary>
+        /// Static method that receives
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns>Returns an object of class cart</returns>
         public static ShopCart GetCart(IServiceProvider services)
         {
-            // создали объект для сесии
+            // created an object for the session
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
             var context = services.GetService<AppDBContent>();
-            // проверяем если не существует с таким ключем CartId создаем новый
+
+            // check if it does not exist with this key CartId create a new one
             string shopCartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
 
-            // установка новый сесии
+            // setting a new session
             session.SetString("CartId", shopCartId);
 
             return new ShopCart(context) { ShopCartId = shopCartId };
         }
         /// <summary>
-        /// Метод который добавляет в корзину книгу
+        /// Method that adds a book to the cart
         /// </summary>
         /// <param name="book"></param>
         public void AddToCart(Book book)
@@ -67,14 +68,14 @@ namespace DataLayer.Models
                 book = book,
                 price = book.price,
             });
-            // Сохранение всех данных
+            // Saving all data
             _appDBContent.SaveChanges();
         }
 
         /// <summary>
-        /// Список товаров из корзины
+        /// List of items from the cart
         /// </summary>
-        /// <returns>Возвращает список товаров по ShopCartId</returns>
+        /// <returns>Returns a list of products by ShopCartId</returns>
         public List<ShopCartItem> GetShopItems()
         {
             return _appDBContent.ShopCartItems.Where(b => b.ShopCartId == ShopCartId)

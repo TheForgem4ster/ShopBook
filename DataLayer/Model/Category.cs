@@ -3,25 +3,25 @@
 namespace DataLayer.Models
 {
     /// <summary>
-    /// Класс категории книг, который содержит индификационный код, имя, описание
-    /// Лист книг 
+    /// Book category class that contains identification code, name, description
+    /// List of books
     /// </summary>
     public class Category
     {
         /// <summary>
-        /// Индификационный код категории
+        /// Category identification code
         /// </summary>
         public int Id { get; set; }
         /// <summary>
-        /// Название категории
+        /// name of category
         /// </summary>
         public string CategoryName { get; set; }
         /// <summary>
-        /// Описание категории
+        /// Category Description
         /// </summary>
         public string Desc { get; set; }
         /// <summary>
-        /// Лист книг
+        /// Sheet of books
         /// </summary>
         public List<Book> Books { get; set; }
     }

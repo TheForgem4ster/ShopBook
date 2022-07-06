@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 namespace WebApplication1
 {
     /// <summary>
-    /// ќсновной класс с которого начинаетс€ работа приложени€
+    /// The main class from which the application starts
     /// </summary>
     public class Program
     {
         /// <summary>
-        /// ќсновной метод с которого начинаетс€ точка входа приложени€
-        /// ¬ котором мы создаем хост и запускаем его
+        /// The main method that starts the entry point of the application
+        /// In which we create a host and run it
         /// </summary>
         /// <param name="args"></param>
         public static void Main(string[] args)
@@ -24,9 +24,9 @@ namespace WebApplication1
             CreateHostBuilder(args).Build().Run();
         }
         /// <summary>
-        /// —татический метод служит дл€ создани€ хоста(хоз€ина)
+        /// The static method is used to create a host
         /// </summary>
-        /// <param name="args">массив строк</param>
+        /// <param name="args">string array</param>
         /// <returns> ѕринимает класс хоста который вызывает метод
         /// CreateDefaultBuilder который выполн€ет р€д задач:
         /// 1) ”станавливает корневой каталог (дл€ поиска содержимых) 

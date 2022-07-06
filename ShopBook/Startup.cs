@@ -2,6 +2,7 @@ using BusinessLayer.Interfaces;
 using BusinessLayer.Repository;
 using DataLayer;
 using DataLayer.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,15 +14,15 @@ using Microsoft.Extensions.Hosting;
 namespace WebApplication1
 {
     /// <summary>
-    /// Стартовый класс
+    /// Starting class
     /// </summary>
     public class Startup
     {
         private IConfigurationRoot _confString;
         /// <summary>
-        /// Конструктор с параметром обращаемся к папке где хранится подключение нашей базы данных
+        /// The constructor with the parameter refers to the folder where our database connection is stored
         /// </summary>
-        /// <param name="hostEnv">Предоставляет сведения среде веб-размещении файла</param>
+        /// <param name="hostEnv">Provides information to the web environment where the file is located</param>
         [System.Obsolete]
         public Startup(Microsoft.Extensions.Hosting.IHostingEnvironment hostEnv)
         {
@@ -36,6 +37,15 @@ namespace WebApplication1
         {
             services.AddDbContext<AppDBContent>(options => options.UseSqlServer
             (_confString.GetConnectionString("DefaultConnection")));
+
+            // установка конфигурации подключения
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
+            services.AddControllersWithViews();
+
 
             // передаем интерфес который реализует класс (Объединяет интерфес с классом который реализует его)
             services.AddTransient<IAllBooks, BookRepository>();
@@ -66,8 +76,10 @@ namespace WebApplication1
             app.UseSession();
             app.UseMvcWithDefaultRoute();
 
-            
-            //Юрл адрес
+            app.UseAuthentication();    
+            app.UseAuthorization();     
+
+            // Url address
             app.UseMvc(router =>
             {
 
@@ -75,7 +87,7 @@ namespace WebApplication1
                 router.MapRoute(name: "categoryFilter", template: "Book/{action}/{category?}", defaults: new { Controllers = "Books", action = "List" });
                 router.MapRoute(name: "FindBooks", template: "Book/{action}/{searchString?}", defaults: new { Controllers = "Books", action = "Find" });
             });
-            // создаем область
+            // create an area
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 // Подключаем базу данных AppDBContent

@@ -5,17 +5,18 @@ using WebApplication1.ViewModels;
 namespace WebApplication1.Controllers
 {
     /// <summary>
-    /// Класс контролеер для отображения основной странички
+    /// Controller class for displaying the main page
     /// </summary>
     public class HomeController : Controller
     {
+
         /// <summary>
-        /// Создание переменной
+        /// Create a variable
         /// </summary>
         private readonly IAllBooks _bookRep;
 
         /// <summary>
-        /// Конструктр с параметрам
+        /// Constructor with parameters
         /// </summary>
         /// <param name="bookRep"></param>
         public HomeController(IAllBooks bookRep)
@@ -24,9 +25,9 @@ namespace WebApplication1.Controllers
 
         }
         /// <summary>
-        /// Метод для вывода книг
+        /// Method for outputting books
         /// </summary>
-        /// <returns>возращает html страничку</returns>
+        /// <returns>returns html page</returns>
         public ViewResult Index()
         {
             var homeBook = new HomeViewModel

@@ -6,21 +6,21 @@ using System.Collections.Generic;
 namespace BusinessLayer.Interfaces
 {
     /// <summary>
-    /// Интерфейс служит для работы с книгами
+    /// The interface is used to work with books
     /// </summary>
     public interface IAllBooks
     {
         /// <summary>
-        /// Функция которая возвращение всех товаров
+        /// A function that returns all goods
         /// </summary>
         IEnumerable<Book> Books { get;  }
         /// <summary>
-        /// Возвращение избранных товаров
+        /// Return of Selected Items
         /// </summary>
         IEnumerable<Book> GetFarBooks { get; }
 
         /// <summary>
-        /// Возвращение конкретного товара по индификационному номеру
+        /// Returning a specific item by tracking number
         /// </summary>
         /// <param name="bookid"></param>
         Book GetBookById(int bookid);

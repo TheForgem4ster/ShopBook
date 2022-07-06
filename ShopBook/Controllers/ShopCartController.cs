@@ -7,7 +7,7 @@ using WebApplication1.ViewModels;
 namespace WebApplication1.Controllers
 {
     /// <summary>
-    /// Класс контроллер для создания корзины
+    /// Controller class for creating a shopping cart
     /// </summary>
     public class ShopCartController : Controller
     {
@@ -15,7 +15,7 @@ namespace WebApplication1.Controllers
         private readonly ShopCart _shopCart;
 
         /// <summary>
-        /// Констуктор с параметрами
+        /// Constructor with parameters
         /// </summary>
         /// <param name="bookRep"></param>
         /// <param name="shopCart"></param>
@@ -26,9 +26,9 @@ namespace WebApplication1.Controllers
         }
 
         /// <summary>
-        /// Метод для отображения в корзине заказов
+        /// Method for displaying in the shopping cart
         /// </summary>
-        /// <returns>Возращает определенный html фаблон и отображает заказы</returns>
+        /// <returns>Returns a specific html template and displays orders</returns>
         public ViewResult Index()
         {
             var item = _shopCart.GetShopItems();
@@ -39,20 +39,20 @@ namespace WebApplication1.Controllers
             return View(obj);
         }
         /// <summary>
-        /// Метод добавляет товары в корзину
+        /// The method adds items to the cart
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>переадресуем пользователя на страничку с корзиной</returns>
+        /// <returns>redirect the user to the shopping cart page</returns>
         public RedirectToActionResult addToCart(int id)
         {
-            // выбирает нужный товар из списка базы данных
+            // selects the desired item from the database list
             var item = _bookRep.Books.FirstOrDefault(i => i.Id == id);
 
             if(item != null)
             {
                 _shopCart.AddToCart(item);
             }
-            // когда мы нажмем на добавление товара то мы переадресуем пользователя на страничку с корзиной
+            // when we click on add product, we will redirect the user to the shopping cart page
             return RedirectToAction("Index");
         }
     }

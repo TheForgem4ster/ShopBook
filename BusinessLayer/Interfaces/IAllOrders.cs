@@ -3,14 +3,14 @@
 namespace BusinessLayer.Interfaces
 {
     /// <summary>
-    /// Интерфейс служит для работы с заказами
+    /// The interface is used to work with orders
     /// </summary>
     public interface IAllOrders
     {
-       /// <summary>
-       /// Функция которая создает заказ 
-       /// </summary>
-       /// <param name="order"></param>
+        /// <summary>
+        /// The function that creates the order
+        /// </summary>
+        /// <param name="order"></param>
         void CreateOrder(Order order);
     }
 }

@@ -6,14 +6,14 @@ using System;
 namespace BusinessLayer.Repository
 {
     /// <summary>
-    /// Класс хранилище заказов - для получения данных из базы данных
+    /// Order storage class - for getting data from the database
     /// </summary>
     public class OrdersRepository : IAllOrders
     {
         private readonly AppDBContent _appDBContent;
         private readonly ShopCart _shopCart;
         /// <summary>
-        /// Конструктор с параметрами
+        /// Constructor with parameters
         /// </summary>
         /// <param name="appDBContent"></param>
         /// <param name="shopCart"></param>
@@ -22,9 +22,9 @@ namespace BusinessLayer.Repository
             _appDBContent = appDBContent;
             _shopCart = shopCart;
         }
-         
+
         /// <summary>
-        /// Метод который создает заказ
+        /// The method that creates the order
         /// </summary>
         /// <param name="order"></param>
         public void CreateOrder(Order order)
@@ -32,7 +32,8 @@ namespace BusinessLayer.Repository
             order.OrderTime = DateTime.Now;
             _appDBContent.Order.Add(order);
             _appDBContent.SaveChanges();
-            //переменная для хранения всех товаров которые приобретает пользователь
+
+            //a variable for storing all the goods that the user purchases
             var item = _shopCart.ListShopItems;
 
             foreach(var elem in item)
@@ -45,9 +46,7 @@ namespace BusinessLayer.Repository
                     
                 };
                 _appDBContent.OrderDetail.Add(orderDetail);
-            }
-            //_appDBContent.SaveChanges();
-           
+            }          
         }
     }
 }

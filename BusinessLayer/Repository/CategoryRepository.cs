@@ -9,16 +9,16 @@ using System.Linq;
 namespace BusinessLayer.Repository
 {
     /// <summary>
-    /// Класс хранилище категорий - для получения данных из базы данных
+    /// Category storage class - for getting data from the database
     /// </summary>
     public class CategoryRepository : IBooksCategory
     {
         /// <summary>
-        /// Переменная _appDBContent нужна для того чтобы мы вытаскивали данные из базы даных
+        /// The _appDBContent variable is needed so that we pull data from the database
         /// </summary>
         private readonly AppDBContent _appDBContent;
         /// <summary>
-        /// Конструктор с параметром устанавливаем значение которое мы передаем на то что получаем
+        /// The constructor with the parameter sets the value we pass to what we get
         /// </summary>
         /// <param name="appDBContent"></param>
         public CategoryRepository(AppDBContent appDBContent)
@@ -26,7 +26,7 @@ namespace BusinessLayer.Repository
             _appDBContent = appDBContent;
         }
         /// <summary>
-        /// Функция для получения всех категорий
+        /// Function to get all categories
         /// </summary>
         public IEnumerable<Category> AllCategories => _appDBContent.Category;
     }

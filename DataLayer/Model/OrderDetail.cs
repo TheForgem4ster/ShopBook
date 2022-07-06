@@ -4,39 +4,39 @@ using System;
 namespace DataLayer.Models
 {
     /// <summary>
-    /// Класс Деталей Заказов, который содержит индификационный код заказа, индификационный код 
-    /// деталей заказа, индификационный код книги, цена детали заказа, свойства класса книжки, 
-    /// свойства класса заказы
+    /// Class of Order Details, which contains the order identification code, the identification code
+    /// order details, book identification code, order details price, book class properties,
+    /// class properties orders
     /// </summary>
     public class OrderDetail
     {
         /// <summary>
-        /// Индификационный код деталей заказа
+        /// Identification code for order details
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Индификационный код Заказа
+        /// Order identification code
         /// </summary>
         public int OrderId { get; set; }
 
         /// <summary>
-        /// Индификационный код Книги
+        /// Book identification code
         /// </summary>
         public int BookId{ get; set; }
 
         /// <summary>
-        /// Цена детали заказа
+        /// Order Detail Price
         /// </summary>
         public uint Price { get; set; }
 
         /// <summary>
-        /// свойства класса книжки
+        /// book class properties
         /// </summary>
         public Book book { get; set; }
 
         /// <summary>
-        /// свойства класса заказы
+        /// order class properties
         /// </summary>
         public Order order { get; set; }
 
